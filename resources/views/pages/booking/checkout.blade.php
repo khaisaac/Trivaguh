@@ -7,7 +7,8 @@
 @endsection
 
 @section('content')
-   <main class="relative flex flex-col w-full max-w-[1280px] px-[75px] mx-auto mt-[50px] mb-[62px]">
+
+    <main class="relative flex flex-col w-full max-w-[1280px] px-[75px] mx-auto mt-[50px] mb-[62px]">
         <a href="choose-seats-economy.html"
             class="flex items-center rounded-[50px] py-3 px-5 gap-[10px] w-fit bg-garuda-black">
             <img src="assets/images/icons/arrow-left-white.svg" class="w-6 h-6" alt="icon">
@@ -456,4 +457,5 @@
             </form>
         </div>
     </main>
+
 @endsection

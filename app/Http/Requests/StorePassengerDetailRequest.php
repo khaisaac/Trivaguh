@@ -23,4 +23,22 @@ class StorePassengerDetailRequest extends FormRequest
             'passengers.*.nationality' => 'required',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'passengers.*.name' => 'Passenger name',
+            'passengers.*.date_of_birth' => 'Passenger date of birth',
+            'passengers.*.nationality' => 'Passenger nationality',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'passengers.*.name.required' => ':attribute field is required.',
+            'passengers.*.date_of_birth.required' => ':attribute field is required.',
+            'passengers.*.nationality.required' => ':attribute field is required.',
+        ];
+    }
 }

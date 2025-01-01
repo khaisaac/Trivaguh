@@ -153,28 +153,36 @@
                         <label class="flex flex-col gap-[10px]">
                             <p class="font-semibold">Complete Name</p>
                             <div class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                    ">
+                            @error('name') border-red-500 @enderror">
                                 <img src="{{ asset('assets/images/icons/profile-black.svg') }}" class="w-5 flex shrink-0" alt="icon">
                                 <input type="text" name="name" id="" class="appearance-none outline-none w-full font-semibold placeholder:font-normal" placeholder="Write your complete name">
                             </div>
+                            @error('name')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </label>
                         <label class="flex flex-col gap-[10px]">
                             <p class="font-semibold">Email Address</p>
                             <div class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                    ">
+                            @error('email') border-red-500 @enderror">
                                 <img src="{{ asset('assets/images/icons/sms-black.png') }}" class="w-5 flex shrink-0" alt="icon">
                                 <input type="email" name="email" id="" class="appearance-none outline-none w-full font-semibold placeholder:font-normal" placeholder="Write your valid email">
                             </div>
-                         
+                            @error('email')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </label>
                         <label class="flex flex-col gap-[10px]">
                             <p class="font-semibold">Phone No.</p>
-                            <div class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300">
+                            <div class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
+                            @error('phone') border-red-500 @enderror">
                           
                                 <img src="{{ asset('assets/images/icons/call-black.svg') }}" class="w-5 flex shrink-0" alt="icon">
                                 <input type="tel" name="phone" id="" class="appearance-none outline-none w-full font-semibold placeholder:font-normal" placeholder="Write your active number">
                             </div>
-                        
+                            @error('phone')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                     </div>
                 </div>
                 <!-- for accordions with select input inside, the script was different from the normal accordion -->
@@ -188,11 +196,13 @@
                         <label class="flex flex-col gap-[10px]">
                             <p class="font-semibold">Complete Name</p>
                             <div class="flex items-center rounded-full border border-garuda-black py-3 px-5 gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                           ">
+                            @error('passengers.' . $loop->index . '.name') border-red-500 @enderror">
                                 <img src="{{ asset('assets/images/icons/profile-black.svg') }}" class="w-5 flex shrink-0" alt="icon">
                                 <input type="text" name="passengers [{{ $loop->index }}][name]" id="" class="appearance-none outline-none w-full font-semibold placeholder:font-normal" placeholder="Write your complete name">
                             </div>
-                           
+                            @error('passengers.' . $loop->index . '.name')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </label>
                         <div class="flex flex-col gap-[10px]">
                             <p class="font-semibold">Date of Birth</p>
@@ -202,7 +212,7 @@
 
                                 {{-- dropdown untuk hari --}}
                                 <label class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                                ">
+                                @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
                                     <img src="{{ asset('assets/images/icons/note-add-black.svg') }}" class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0" alt="icon">
 
                                     <select id="day-select-{{ $loop->index }}" name=""
@@ -214,7 +224,7 @@
                                 </label>
                                 {{-- dropdown untuk bulan --}}
                                 <label class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                               ">
+                                @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
                                     <img src="{{ asset('assets/images/icons/note-add-black.svg') }}"
                                     class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0" alt="icon">
                                     <select id="month-select-{{ $loop->index }}" name="" 
@@ -226,7 +236,7 @@
                                 </label>
                                 {{-- dropdown untuk tahun --}}
                                 <label class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                               ">
+                                @error('passengers.' . $loop->index . '.date_of_birth') border-red-500 @enderror">
                                     <img src="{{ asset('assets/images/icons/note-add-black.svg') }}" class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0" alt="icon">
                                     <select id="year-select-{{ $loop->index }}" name="" 
                                         class="date-select year-select appearance-none w-full outline-none pl-[50px] py-3 px-5 font-semibold indeterminate:!font-normal"
@@ -236,12 +246,14 @@
                                     </select>
                                 </label>
                             </div>
-                         
+                            @error('passengers.' . $loop->index . '.date_of_birth')
+                                <p class="text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <label class="flex flex-col gap-[10px]">
                             <p class="font-semibold">Nationality</p>
                             <div class="relative flex items-center w-full rounded-full overflow-hidden border border-garuda-black gap-[10px] focus-within:border-[#0068FF] transition-all duration-300
-                           ">
+                            @error('passengers.' . $loop->index . '.nationality') border-red-500 @enderror">
                                 <img src="{{ asset('assets/images/icons/global-black.svg') }}" class="absolute transform -translate-y-1/2 top-1/2 left-5 w-5 shrink-0" alt="icon">
                                 <select name="passengers [{{ $loop->index }}][nationality]" id="" class="appearance-none w-full outline-none pl-[50px] py-3 px-5 font-semibold indeterminate:!font-normal">
                                     <option hidden>Select country region</option>
@@ -264,9 +276,9 @@
 <script src="{{ asset('assets/js/date-of-birth.js') }}"></script>
 <script>
     function updateDateOfBirth(index) {
-        const day = document.getElementById(`day-select${index}`).value;
-        const month = document.getElementById(`month-select${index}`).value;
-        const year = document.getElementById(`year-select${index}`).value;
+        const day = document.getElementById(`day-select-${index}`).value;
+        const month = document.getElementById(`month-select-${index}`).value;
+        const year = document.getElementById(`year-select-${index}`).value;
     
         if (day && month && year) {
             document.getElementById(`dateOfBirth-${index}`).value = `${year}-${month}-${day}`;
