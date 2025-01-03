@@ -61,7 +61,8 @@ class BookingController extends Controller
         $transaction = $this->transactionRepository->getTransactionDataFromSession();
         $flight = $this->flightRepository->getFlightByFlightNumber($flightNumber);
         $tier = $flight->classes->find($transaction['flight_class_id']);
-        return view('pages.booking.passenger-details', compact('transaction', 'flight', 'tier'));
+        // dd($transaction);
+        return view('pages.booking.checkout', compact('transaction', 'flight', 'tier'));
     }
 
     public function checkBooking()
@@ -69,4 +70,29 @@ class BookingController extends Controller
         return view('pages.booking.check-booking');
     }
 
+     public function payment(Request $request)
+        {
+            $this->transactionRepository->saveTransactionDataToSession($request->all());
+            
+            $transaction = $this->transactionRepository->saveTransaction($this->transactionRepository->getTransactionDataFromSession());
+            
+            //set your merchant server key
+            \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+            //set to development/sandbox environment
+            \Midtrans\Config::$isProduction = config('midtrans.isProduction');
+            //set sanitazion on(default)
+            \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
+            //set 3DS transaction for credit
+            \Midtrans\Config::$is3ds = config('midtrans.is3ds');
+            
+            $params = [
+                'transaction_details' => [
+                    'order_id' => $transaction->code,
+                    'gross_amount' => $transaction->grand_total,
+                    ]
+                ];
+                $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+                // dd($transaction);
+                return redirect($paymentUrl);
+            }
 }

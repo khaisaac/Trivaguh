@@ -33,14 +33,14 @@
                     </div>
                 </div>
                 <div class="flex justify-between">
-                    <div>
+                    {{-- <div>
                         <p class="text-sm text-garuda-grey">Date</p>
                         <p class="font-semibold text-lg">{{ $flight->segments->first()->time->format('d F Y') }}</p>
-                    </div>
-                    <div class="text-end">
+                    </div> --}}
+                    {{-- <div class="text-end">
                         <p class="text-sm text-garuda-grey">Quantity</p>
-                        <p class="font-semibold text-lg">3 people</p>
-                    </div>
+                        <p class="font-semibold text-lg">{{ $flight->classes->first()->quantity }}</p>
+                    </div> --}}
                 </div>
                 <div class="flex flex-col rounded-[20px] border border-[#E8EFF7] p-5 gap-5">
                     <div class="flex flex-col gap-4">

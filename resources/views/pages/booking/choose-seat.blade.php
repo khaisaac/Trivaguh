@@ -48,7 +48,7 @@
                     </div>
                     <div class="text-end">
                         <p class="text-sm text-garuda-grey">Quantity</p>
-                        <p class="font-semibold text-lg">3 people</p>
+                        <p class="font-semibold text-lg">{{ count($transaction['selected_seats']) }} people</p>
                     </div>
                 </div>
                         <div class="flex flex-col rounded-[20px] border border-[#E8EFF7] p-5 gap-5">
@@ -99,8 +99,13 @@
                             <hr class="border-[#E8EFF7]">
                             <div class="flex items-center rounded-[20px] gap-[14px]">
                                 <div class="flex w-[120px] h-[100px] shrink-0 rounded-[20px] overflow-hidden">
-                                    <img src="{{ asset('assets/images/thumbnails/economy-seat.png') }}"
-                                        class="w-full h-full object-cover" alt="icon">
+                                    @if ($tier->class_type == 'business')
+                                        <img src="{{ asset('assets/images/thumbnails/business-seat.png') }}"
+                                            class="w-full h-full object-cover" alt="icon">
+                                    @else
+                                        <img src="{{ asset('assets/images/thumbnails/economy-seat.png') }}"
+                                            class="w-full h-full object-cover" alt="icon">                          
+                                    @endif
                                 </div>
                                 <div>
                                     <p class="font-bold text-xl leading-[30px]">{{ \Str::ucfirst($tier->class_type) }} Class</p>
@@ -124,10 +129,12 @@
                                 <p class="text-sm text-garuda-grey">Quantity</p>
                                 <p class="font-semibold text-lg leading-[27px] mt-[2px]" id="quantity">0 People</p>
                             </div>
-                            <div>
+                            @foreach ($transaction['selected_seats'] as $seat )
+                                <div>
                                 <p class="text-sm text-garuda-grey">Tiers</p>
-                                <p class="font-semibold text-lg leading-[27px] mt-[2px]">Economy</p>
+                                <p class="font-semibold text-lg leading-[27px] mt-[2px]" id="">{{ \Str::ucfirst($tier->class_type)}}</p>
                             </div>
+                            @endforeach
                             <div>
                                 <p class="text-sm text-garuda-grey">Seats</p>
                                 <p class="font-semibold text-lg leading-[27px] mt-[2px]" id="selectedSeats">-</p>
